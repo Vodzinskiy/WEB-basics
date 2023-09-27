@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    height: 100vh;
+    text-align: center;
+}
+
+.second-row {
+    height: 75%;
+}
+
+.col {
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+
+.row {
+    height: 12.5%;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text1 {
+    font-size: 36px;
+    font-family: "Arial", serif;
+    font-weight: bold;
+    color: #ffffff;
+
+    position: relative;
+    top: 47%;
+}

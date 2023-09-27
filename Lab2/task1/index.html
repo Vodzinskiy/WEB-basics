@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>task1</title>
+</head>
+<body>
+<div class="task1">
+    <h1>Форма для заповнення</h1>
+    <form id="validation-form">
+        <div class="form-group">
+            <label for="name">ПІБ:</label>
+            <input type="text" id="name" placeholder="ТТТТТТ Т.Т." required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Телефон:</label>
+            <input type="text" id="phone" placeholder="(ЧЧЧ)-ЧЧЧ-ЧЧ-ЧЧ" required>
+        </div>
+        <div class="form-group">
+            <label for="faculty">Факультет:</label>
+            <input type="text" id="faculty" placeholder="ТТТТ" required>
+        </div>
+        <div class="form-group">
+            <label for="birthDate">Дата народження:</label>
+            <input type="text" id="birthDate" placeholder="ЧЧ.ЧЧ.ЧЧЧЧ" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Адреса:</label>
+            <input type="text" id="address" placeholder="м. ТТТТТТ" required>
+        </div>
+        <div class="form-group">
+            <button type="button" onclick="checkForm()">Підтвердити</button>
+        </div>
+    </form>
+</div>
+<script src="scripts.js"></script>
+</body>
+</html>

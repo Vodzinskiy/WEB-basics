@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+}
+
+.task2 {
+    padding-top: 50px;
+    align-items: center;
+}
+
+.color_tool {
+     margin: auto;
+    width: 360px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+table,
+td {
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+td {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font-weight: bold;
+}

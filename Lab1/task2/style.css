@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.col{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    height: 12.5%;
+}
+
+.second-row {
+    height: 75%;
+    flex-direction: row;
+    display: flex;
+}
+
+.col {
+    height: 100%;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text1 {
+    font-size: 36px;
+    font-family: "Arial", serif;
+    font-weight: bold;
+    color: #ffffff;
+}
