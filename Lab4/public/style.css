@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    font-family: "Arial", serif;
+}
+
+#app {
+    position: fixed;
+    width: 70%;
+    height: calc(100vh - 20px);
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    overflow: auto;
+}
+
+.header, .footer {
+    height: 50px;
+    background: #b2d3ff;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    align-items: center;
+}
+
+#message-container {
+    flex: 1;
+    background: #e9f6ff;
+    overflow: auto;
+    padding: 10px;
+}
+
+#chat-title {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+#message-input, #name-input {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    margin-left: 10px;
+    outline: none;
+    border: none;
+}
+
+#send-button, #name-submit {
+    background: #c2e7ff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#logout-button {
+    background: none;
+    color: black;
+    border: 2px solid black;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#message-input, #send-button, #logout-button, #name-submit, #name-input {
+    height: 35px;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#name-input {
+    border: 2px solid black;
+    margin: 10px;
+}
+
+.blur {
+    filter: blur(10px);
+}
+
+#modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+#submit-error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.notification, .my-message, .chat-message {
+    margin: 10px;
+    display: block;
+    clear: both;
+}
+
+.message {
+    word-wrap: break-word;
+    padding: 10px;
+    max-width: 30%;
+}
+
+.notification {
+    background: #c2e7ff;
+    border-radius: 10px;
+    width: 60%;
+    text-align: center;
+    margin: 10px auto;
+}
+
+.my-message {
+    background: #69c4ff;
+    border-radius: 10px;
+    float: right;
+}
+
+.chat-message {
+    float: left;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.time {
+    float: right;
+    font-size: 10px;
+}
+
+.name {
+    float: left;
+    font-weight: bold;
+    color: darkred;
+}

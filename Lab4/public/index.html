@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vodzinskiy Lab4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="modal">
+    <div class="modal-content">
+        <h3>Enter your nickname</h3>
+        <label for="name-input"></label><input type="text" id="name-input">
+        <div id="submit-error"></div>
+        <button id="name-submit">Submit</button>
+    </div>
+</div>
+<div id="app">
+    <div class="header">
+        <h3 id="chat-title"></h3>
+        <button id="logout-button">log out</button>
+    </div>
+    <div id="message-container"></div>
+    <div class="footer">
+        <label for="message-input"></label><input type="text" id="message-input" placeholder="Write a message...">
+        <button id="send-button">Send</button>
+    </div>
+</div>
+<script src="socket.io/socket.io.js"></script>
+<script src="scripts.js"></script>
+</body>
+</html>
