@@ -1,0 +1,22 @@
+<div class="sign-up-form">
+  <p class="text">Sign up</p>
+  <input type="text" [(ngModel)]="name" placeholder="name">
+  <input type="email" [(ngModel)]="email" placeholder="email">
+  <input type="text" [(ngModel)]="phone" placeholder="phone">
+  <input type="text" [(ngModel)]="faculty" placeholder="faculty">
+  <input type="text" [(ngModel)]="address" placeholder="address">
+  <input type="text" [(ngModel)]="birthDate" placeholder="birth date" onfocus="(this.type='date')" onblur="(this.type='text')">
+  <input type="password" [(ngModel)]="password" [type]="showPassword ? 'text' : 'password'" placeholder="password">
+  <div class="password-visibility">
+    <input id="password-visibility" type="checkbox" (change)="togglePasswordVisibility()">
+    <p style="font-size: 15px">show password</p>
+  </div>
+  <p class="error">{{ textError }}</p>
+  <button class="google-button" (click)="google()">
+    <img src="assets/images/google.svg" alt=""> Continue with Google
+  </button>
+  <div class="buttons">
+    <button class="sign-up" (click)="LoginPage()">Login</button>
+    <button class="login" (click)="signUp()">Sign up</button>
+  </div>
+</div>

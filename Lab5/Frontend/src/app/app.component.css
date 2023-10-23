@@ -1,0 +1,139 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Google Sans","Noto Sans Myanmar UI",arial,sans-serif;
+}
+
+body {
+  height: 100vh;
+}
+
+.login-form, .sign-up-form {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 350px;
+  border: 1px solid #DADCE0;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+}
+
+.login-form {
+  top: 18%;
+  height: 400px;
+}
+
+.sign-up-form {
+  height: 610px;
+}
+
+.text {
+  margin: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+input {
+  margin: 10px 40px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #DADCE0;
+  padding: 5px 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline-color: #4285F4;
+  outline-width: 2px;
+}
+
+input[type=checkbox] {
+  margin-left: 50px;
+  margin-right: 5px;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+}
+
+input[type=date] {
+  min-height: 30px;
+}
+
+.password-visibility {
+  display: flex;
+  align-items: center;
+  height: 15px;
+  margin-bottom: 10px;
+}
+
+.google-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 40px 10px;
+  height: 40px;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid #868686;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.google-button img {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
+
+.google-button:hover {
+  background: ghostwhite;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 40px 10px;
+
+}
+
+.sign-up {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #1a73e8;
+  cursor: pointer;
+}
+
+.login {
+  border: none;
+  background: #1a73e8;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+}
+
+.sign-up:hover {
+  color: #0b62d5;
+}
+
+.login:hover {
+  background: #0b62d5;
+}
+
+.error {
+  font-size: 14px;
+  text-align: center;
+  color: red;
+  max-height: 14px;
+}
+
+.invalid-input {
+  border: 2px solid red;
+}
+
