@@ -1,16 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import jwt_decode from 'jwt-decode';
 import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../app.component";
+import {catchError, EMPTY} from "rxjs";
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['/../app.component.css']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, AfterViewInit {
   showPassword: boolean = false;
   name: string = '';
   email: string = '';
@@ -20,13 +21,19 @@ export class MainComponent implements OnInit {
   birthDate: string = '';
   password: string = '';
   textError: string = '';
+  role: string = '';
   text: string = ''
   users: User[] = []
 
+  @ViewChild('roleSelect') roleSelect!: ElementRef;
 
   constructor(private router: Router,
               private cookieService: CookieService,
               private http: HttpClient) {
+  }
+
+  ngAfterViewInit(): void {
+    this.selectDisable()
   }
 
   ngOnInit(): void {
@@ -73,6 +80,7 @@ export class MainComponent implements OnInit {
         } catch (e) {
           this.birthDate = ''
         }
+        this.role = data.role
       }, error => {
         console.log(error);
       });
@@ -89,13 +97,22 @@ export class MainComponent implements OnInit {
       address: this.address,
       birthDate: this.birthDate.toString(),
       email: this.email,
+      role: this.role,
       password: ''
     };
     if (this.password.toString() != '') {
       body.password = this.password;
     }
-    this.http.patch('http://localhost:8080/' + this.decodeJwt()['jti'], body, {withCredentials: true}).subscribe()
+    this.http.patch('http://localhost:8080/' + this.decodeJwt()['jti'], body, {withCredentials: true}).pipe(
+      catchError((error) => {
+        if (error.status === 409) {
+          this.textError = "User with this email already exists";
+        }
+        return EMPTY;
+      })
+    ).subscribe()
     this.password = ''
+    this.selectDisable()
   }
 
   delete() {
@@ -146,5 +163,11 @@ export class MainComponent implements OnInit {
 
   deleteCard(id: string) {
     this.users = this.users.filter(c => c.id !== id)
+  }
+
+  selectDisable() {
+    if (this.decodeJwt()['role'] == "USER") {
+      this.roleSelect.nativeElement.disabled = true
+    }
   }
 }

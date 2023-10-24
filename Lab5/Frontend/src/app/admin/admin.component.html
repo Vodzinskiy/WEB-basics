@@ -18,22 +18,27 @@
         <p class="pref">Faculty:</p>
         <p class="pref">Address:</p>
         <p class="pref">Birth date:</p>
+        <p class="pref">Role:</p>
         <p class="pref">New password:</p>
       </div>
       <div class="col" >
         <input type="text" class="page-input" [(ngModel)]="name">
-        <input type="email"  [(ngModel)]="email" class="page-input">
+        <input type="email" [(ngModel)]="email" class="page-input">
         <input type="text" [(ngModel)]="phone" class="page-input">
         <input type="text" [(ngModel)]="faculty" class="page-input">
         <input type="text" [(ngModel)]="address" class="page-input">
-        <input type="date" #birthDateInput [(ngModel)]="birthDate" class="page-input">
+        <input type="date" [(ngModel)]="birthDate" class="page-input">
+        <select class="page-input" [(ngModel)]="role">
+          <option value="USER">user</option>
+          <option value="ADMIN">admin</option>
+        </select>
         <input type="password" [(ngModel)]="password" [type]="showPassword ? 'text' : 'password'" class="page-input">
         <div class="password-visibility">
           <input id="password-visibility" type="checkbox" (change)="togglePasswordVisibility()">
           <p style="font-size: 16px">show password</p>
         </div>
         <div style="height: 40px">
-          <p class="error">{{ textError }}</p>
+          <p class="error-text">{{ textError }}</p>
         </div>
       </div>
     </div>

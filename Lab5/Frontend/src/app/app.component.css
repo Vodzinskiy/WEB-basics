@@ -35,7 +35,7 @@ body {
   text-align: center;
 }
 
-input {
+input, select {
   margin: 10px 40px;
   height: 40px;
   border-radius: 5px;
@@ -126,15 +126,10 @@ input[type=date] {
   background: #0b62d5;
 }
 
-.error {
-  font-size: 14px;
+.error-text {
+  font-size: 16px;
   text-align: center;
   color: red;
-  max-height: 14px;
-}
-
-.invalid-input {
-  border: 2px solid red;
 }
 
 .sign-out {
@@ -162,10 +157,9 @@ input[type=date] {
   justify-content: center;
 }
 
-
 .my-info {
   margin-top: 60px;
-  width: 100vw;
+ /* width: 100vw;*/
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -277,5 +271,4 @@ input[type=date] {
   flex-direction: row;
   justify-content: center;
 }
-
 

@@ -6,12 +6,12 @@
     <input id="password-visibility" type="checkbox" (change)="togglePasswordVisibility()">
     <p style="font-size: 15px">show password</p>
   </div>
-  <p class="error">{{ textError }}</p>
+  <p class="error-text">{{ textError }}</p>
   <button class="google-button" (click)="google()">
     <img src="assets/images/google.svg" alt=""> Continue with Google
   </button>
   <div class="buttons">
-    <button class="sign-up" (click)="signUpPage()">Sing up</button>
+    <button class="sign-up" (click)="signUpPage()">Sign up</button>
     <button class="login" (click)="login()">Login</button>
   </div>
 </div>

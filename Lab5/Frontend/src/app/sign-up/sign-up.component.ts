@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-import { Validators, FormControl } from '@angular/forms';
 import {catchError, EMPTY} from "rxjs";
 
 
@@ -49,17 +48,21 @@ export class SignUpComponent {
       email: this.email
     };
 
-    this.http.post('http://localhost:8080/signup', body).subscribe(
-      (response) => {
-        this.http.post('http://localhost:8080/login', {password: this.password, email: this.email}, {observe: 'response',
-          withCredentials: true}).pipe().subscribe(
-          (response) => {
+    this.http.post('http://localhost:8080/signup', body).pipe(
+      catchError((error) => {
+        if (error.status === 409) {
+          this.textError = "User with this email already exists";
+        }
+        return EMPTY;
+      })
+    ).subscribe(
+      () => {
+        this.http.post('http://localhost:8080/login', {password: this.password, email: this.email},
+          {observe: 'response', withCredentials: true}).subscribe(
+          () => {
             this.router.navigate(['/']);
           }
         );
-      },
-      (error) => {
-        console.error('Error during sign-up', error);
       }
     );
   }

@@ -1,6 +1,7 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {User} from "../app.component";
 import {HttpClient} from "@angular/common/http";
+import {catchError, EMPTY} from "rxjs";
 
 @Component({
   selector: 'app-admin',
@@ -26,7 +27,7 @@ export class AdminComponent implements OnInit {
   birthDate: string = '';
   password: string = '';
   textError: string = '';
-
+  role: string = '';
   constructor(private http: HttpClient) {
   }
 
@@ -69,6 +70,7 @@ export class AdminComponent implements OnInit {
         this.phone = data.phone
         this.faculty = data.faculty
         this.address = data.address
+        this.role = data.role
         try {
           this.birthDate = data.birthDate[0] + "-" + String(data.birthDate[1]).padStart(2, '0') + "-" + String(data.birthDate[2]).padStart(2, '0')
         } catch (e) {
@@ -79,7 +81,7 @@ export class AdminComponent implements OnInit {
       });
   }
 
-  edit() {
+  async edit() {
     if (!this.validation()) {
       return
     }
@@ -90,12 +92,20 @@ export class AdminComponent implements OnInit {
       address: this.address,
       birthDate: this.birthDate.toString(),
       email: this.email,
+      role: this.role,
       password: ''
     };
     if (this.password.toString() != '') {
       body.password = this.password;
     }
-    this.http.patch('http://localhost:8080/' + this.myCard.id, body, {withCredentials: true}).subscribe()
+    this.http.patch('http://localhost:8080/' + this.myCard.id, body, {withCredentials: true}).pipe(
+      catchError((error) => {
+        if (error.status === 409) {
+          this.textError = "User with this email already exists";
+        }
+        return EMPTY;
+      })
+    ).subscribe()
     this.password = ''
   }
   validation(): boolean {

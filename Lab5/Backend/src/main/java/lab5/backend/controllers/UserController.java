@@ -59,6 +59,11 @@ public class UserController {
     public ResponseEntity<User> editUserById(@PathVariable String userID,
                                              @RequestBody User user,
                                              @CookieValue("jwtToken") String jwt) {
+
+        if (userService.getUserByEmail(user.getEmail()).isPresent() &&
+                !userService.getUserByEmail(user.getEmail()).get().getId().equals(UUID.fromString(userID))) {
+            throw new AlreadyExistsException("Email already exists");
+        }
         Role role = jwtUtils.getUserRoleFromJwtToken(jwt);
         if  (!Objects.equals(userID, jwtUtils.getUserIDFromJwtToken(jwt)) && role != Role.ADMIN) {
            return ResponseEntity.badRequest().build();
