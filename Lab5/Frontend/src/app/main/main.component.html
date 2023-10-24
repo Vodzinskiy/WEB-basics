@@ -1,1 +1,44 @@
-<p>{{ text }}</p>
+<div class="top-right">
+  <button class="sign-out" (click)="signOut()">Sign out</button>
+</div>
+<div class="my-info">
+  <div class="col">
+    <p class="pref">Name:</p>
+    <p class="pref">Email:</p>
+    <p class="pref">Phone:</p>
+    <p class="pref">Faculty:</p>
+    <p class="pref">Address:</p>
+    <p class="pref">Birth date:</p>
+    <p class="pref">New password:</p>
+  </div>
+  <div class="col" >
+    <input type="text" class="page-input" [(ngModel)]="name">
+    <input type="email"  [(ngModel)]="email" class="page-input">
+    <input type="text" [(ngModel)]="phone" class="page-input">
+    <input type="text" [(ngModel)]="faculty" class="page-input">
+    <input type="text" [(ngModel)]="address" class="page-input">
+    <input type="date" #birthDateInput [(ngModel)]="birthDate" class="page-input">
+    <input type="password" [(ngModel)]="password" [type]="showPassword ? 'text' : 'password'" class="page-input">
+    <div class="password-visibility">
+      <input id="password-visibility" type="checkbox" (change)="togglePasswordVisibility()">
+      <p style="font-size: 16px">show password</p>
+    </div>
+    <div style="height: 40px">
+      <p class="error">{{ textError }}</p>
+    </div>
+  </div>
+</div>
+<div class="page-buttons">
+  <button class="sign-out" (click)="edit()">Edit</button>
+  <button class="sign-out" style="margin-left: 10px" (click)="fillFields()">Undo changes</button>
+  <button class="sign-out" style="margin-left: 10px; background: red" (click)="delete()">Delete account</button>
+</div>
+<div class="admin-body">
+  <app-admin  *ngFor="let u of users"
+              [myCard]="u"
+              (onRemove)="deleteCard($event)">
+
+  </app-admin>
+</div>
+
+

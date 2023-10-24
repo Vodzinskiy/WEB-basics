@@ -1,0 +1,47 @@
+<div #adminCard class="admin-card">
+  <div class="min-card">
+    <div class="min-card-info">
+      <p #minName style="font-size: 18px; margin-right: 30px">Name: {{myCard.name}}</p>
+      <p #minEmail style="font-size: 18px">Email: {{myCard.email}}</p>
+    </div>
+    <div class="card-button">
+      <button class="round-button more-button" [ngClass]="{'rotate': isRotated}" (click)="showMore()"><img class="button-img" src="assets/images/more.png" alt=""></button>
+      <button class="round-button"><img class="button-img" src="assets/images/trash.svg" alt="" (click)="delete()"></button>
+    </div>
+  </div>
+  <div *ngIf="!isHidden">
+    <div #userInfo class="user-info">
+      <div class="col">
+        <p class="pref">Name:</p>
+        <p class="pref">Email:</p>
+        <p class="pref">Phone:</p>
+        <p class="pref">Faculty:</p>
+        <p class="pref">Address:</p>
+        <p class="pref">Birth date:</p>
+        <p class="pref">New password:</p>
+      </div>
+      <div class="col" >
+        <input type="text" class="page-input" [(ngModel)]="name">
+        <input type="email"  [(ngModel)]="email" class="page-input">
+        <input type="text" [(ngModel)]="phone" class="page-input">
+        <input type="text" [(ngModel)]="faculty" class="page-input">
+        <input type="text" [(ngModel)]="address" class="page-input">
+        <input type="date" #birthDateInput [(ngModel)]="birthDate" class="page-input">
+        <input type="password" [(ngModel)]="password" [type]="showPassword ? 'text' : 'password'" class="page-input">
+        <div class="password-visibility">
+          <input id="password-visibility" type="checkbox" (change)="togglePasswordVisibility()">
+          <p style="font-size: 16px">show password</p>
+        </div>
+        <div style="height: 40px">
+          <p class="error">{{ textError }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="page-buttons">
+      <button class="sign-out" (click)="edit()">Edit</button>
+      <button class="sign-out" style="margin-left: 10px" (click)="fillFields()">Undo changes</button>
+    </div>
+  </div>
+
+  <ng-content></ng-content>
+</div>

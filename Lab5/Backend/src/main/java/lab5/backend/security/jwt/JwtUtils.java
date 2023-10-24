@@ -1,6 +1,7 @@
 package lab5.backend.security.jwt;
 
 import lab5.backend.entity.CustomOAuth2User;
+import lab5.backend.entity.Role;
 import lab5.backend.security.services.UserDetailsImpl;
 import lab5.backend.services.UserService;
 import io.jsonwebtoken.*;
@@ -67,6 +68,10 @@ public class JwtUtils {
 
     public String getUserIDFromJwtToken(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getId();
+    }
+
+    public Role getUserRoleFromJwtToken(String token) {
+        return Role.valueOf(Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().get("role").toString());
     }
 
     public boolean validateJwtToken(String authToken) {

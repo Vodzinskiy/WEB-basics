@@ -3,11 +3,14 @@ package lab5.backend.services;
 import lab5.backend.entity.Provider;
 import lab5.backend.entity.Role;
 import lab5.backend.entity.User;
+import lab5.backend.exception.NotFoundException;
 import lab5.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,7 +18,6 @@ import java.util.UUID;
 public class UserService {
 
     private final UserRepository userRepository;
-
 
     @Autowired
     public UserService(UserRepository userRepository) {
@@ -42,8 +44,30 @@ public class UserService {
         return userRepository.findByPhone(phone);
     }
 
-    public Optional<User> getUserById(UUID id) {
-        return userRepository.findById(id);
+    public User getUserById(UUID id) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) {
+            throw new NotFoundException("User not found for id: " + id);
+        }
+        return user.get();
+    }
+
+    public void editUserById(UUID id, User requestUser, Role role) {
+       User user = getUserById(id);
+       user.setName(requestUser.getName());
+       user.setEmail(requestUser.getEmail());
+       user.setAddress(requestUser.getAddress());
+       user.setFaculty(requestUser.getFaculty());
+       user.setPhone(requestUser.getPhone());
+       user.setBirthDate(requestUser.getBirthDate());
+       if (!requestUser.getPassword().isEmpty()) {
+           user.setPassword(requestUser.getPassword());
+       }
+       if (Objects.equals(role, Role.ADMIN) &&
+               requestUser.getRole() != null) {
+           user.setRole(requestUser.getRole());
+       }
+        userRepository.save(user);
     }
 
     public void deleteUserById(UUID id) {

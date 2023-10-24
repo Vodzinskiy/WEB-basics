@@ -44,7 +44,7 @@ export class SignUpComponent {
       phone: this.phone,
       faculty: this.faculty,
       address: this.address,
-      birthDate: this.birthDate,
+      birthDate: this.birthDate.toString(),
       password: this.password,
       email: this.email
     };
@@ -52,8 +52,11 @@ export class SignUpComponent {
     this.http.post('http://localhost:8080/signup', body).subscribe(
       (response) => {
         this.http.post('http://localhost:8080/login', {password: this.password, email: this.email}, {observe: 'response',
-          withCredentials: true}).pipe();
-        this.router.navigate(['/']);
+          withCredentials: true}).pipe().subscribe(
+          (response) => {
+            this.router.navigate(['/']);
+          }
+        );
       },
       (error) => {
         console.error('Error during sign-up', error);

@@ -5,7 +5,7 @@
   <input type="text" [(ngModel)]="phone" placeholder="phone">
   <input type="text" [(ngModel)]="faculty" placeholder="faculty">
   <input type="text" [(ngModel)]="address" placeholder="address">
-  <input type="text" [(ngModel)]="birthDate" placeholder="birth date" onfocus="(this.type='date')" onblur="(this.type='text')">
+  <input type="date" [(ngModel)]="birthDate" placeholder="birth date">
   <input type="password" [(ngModel)]="password" [type]="showPassword ? 'text' : 'password'" placeholder="password">
   <div class="password-visibility">
     <input id="password-visibility" type="checkbox" (change)="togglePasswordVisibility()">

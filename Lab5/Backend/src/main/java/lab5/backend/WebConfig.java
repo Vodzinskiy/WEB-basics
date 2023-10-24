@@ -17,7 +17,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:4200")
                 .allowCredentials(true)
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedMethods("GET", "POST", "PATCH", "DELETE")
                 .allowedHeaders("*");
     }
 
@@ -30,7 +30,7 @@ public class WebConfig implements WebMvcConfigurer {
         config.addAllowedHeader("*");
         config.addAllowedMethod("GET");
         config.addAllowedMethod("POST");
-        config.addAllowedMethod("PUT");
+        config.addAllowedMethod("PATCH");
         config.addAllowedMethod("DELETE");
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);

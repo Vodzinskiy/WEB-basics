@@ -8,13 +8,16 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { MainComponent } from './main/main.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {CookieService} from "ngx-cookie-service";
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignUpComponent,
-    MainComponent
+    MainComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,7 @@ import {HttpClientModule} from "@angular/common/http";
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
