@@ -25,6 +25,7 @@ router = Router()
 USERS_DATA_FILE = "users_data.json"
 users_settings = []
 error = "Please enter your OpenAI API key using command /setkey"
+bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
 
 
 class User:
@@ -133,6 +134,38 @@ async def configuration(message: types.Message, state: FSMContext) -> None:
     await state.clear()
 
 
+@router.message(Command("img"))
+async def configuration(message: types.Message) -> None:
+    user = get_json_data(message)
+    if user.key is None or user.key == "":
+        await message.answer(error)
+    else:
+        try:
+            text = message.text.split('/img', 1)[1].strip()
+            parts = text.split(' ', 1)
+            size, prompt = parts
+            if size != "256x256" and size != "512x512" and size != "1024x1024":
+                await message.answer("The size is not supported, the permissible sizes are 256x256, 512x512, 1024x1024")
+            else:
+                try:
+                    openai.api_key = user.key
+                    response = openai.Image.create(
+                        prompt=prompt,
+                        n=1,
+                        size=size
+                    )
+                    image_url = response['data'][0]['url']
+
+                    await bot.send_photo(message.chat.id, image_url)
+                except:
+                    await message.answer("Invalid Openai key")
+
+        except:
+            await message.answer("wrong format, valid command /img <size> <prompt>")
+
+
+
+
 @router.message()
 async def echo(message: types.Message):
     user = get_json_data(message)
@@ -150,7 +183,6 @@ async def echo(message: types.Message):
             await message.answer("Invalid Openai key")
 
 
-
 async def on_startup(bot: Bot) -> None:
     await bot.set_webhook(f"{WEBHOOK_URL}")
 
@@ -160,7 +192,7 @@ def main() -> None:
     dp.include_router(router)
     dp.startup.register(on_startup)
 
-    bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
+
 
     app = web.Application()
 
